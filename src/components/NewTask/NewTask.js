@@ -28,8 +28,10 @@ const NewTask = (props) => {
 
       const data = await response.json();
 
-      const generatedId = data.name; // firebase-specific => "name" contains generated id
+      const generatedId = data.name; // firebase-specific => "name" contains crypted id string
       const createdTask = { id: generatedId, text: taskText };
+      console.log(createdTask);
+      console.log(generatedId);
 
       props.onAddTask(createdTask);
     } catch (err) {

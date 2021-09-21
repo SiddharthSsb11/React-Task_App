@@ -24,10 +24,13 @@ function App() {
 
       const loadedTasks = [];
 
+      //const loadedTasks = Object.entries(data).map(([key, value]) => return{id: key, text: value.text})
       for (const taskKey in data) {
         loadedTasks.push({ id: taskKey, text: data[taskKey].text });
       }
 
+      console.log(data);
+      console.log(loadedTasks);
       setTasks(loadedTasks);
     } catch (err) {
       setError(err.message || 'Something went wrong!');
@@ -40,7 +43,7 @@ function App() {
   }, []);
 
   const taskAddHandler = (task) => {
-    setTasks((prevTasks) => prevTasks.concat(task));
+    setTasks((prevTasks) => prevTasks.concat(task));//setTasks((prevTasks)=> [...prevTasks, task]
   };
 
   return (
