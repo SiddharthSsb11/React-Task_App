@@ -18,7 +18,9 @@ const Tasks = (props) => {
   let content = taskList;
 
   if (props.error) {
-    content = <button onClick={props.onFetch}>Try again</button>;
+    //now the fetchTask inside the useEffect accept two arguments when the button is clcicked
+    content = <button onClick={props.onFetch.bind(null, {}, () => {})}> Try again </button>;
+    //content = <button onClick={props.onFetch}>Try again</button>;
   }
 
   if (props.loading) {

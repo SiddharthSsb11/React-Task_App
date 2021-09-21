@@ -1,12 +1,12 @@
 import {
-    useState
+    useState, useCallback
 } from 'react';
 
-const useHttp = (requestConfig, applyData) => {
+const useHttp = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const sendRequest = async () => {//renaming it to go with both get and post reqs
+    const sendRequest = useCallback( async (requestConfig, applyData) => {//renaming it to go with both get and post reqs
         setIsLoading(true);
         setError(null);
         try {
@@ -23,14 +23,15 @@ const useHttp = (requestConfig, applyData) => {
             const data = await response.json();
 
             applyData(data)
-            console.log(data);
+            //console.log(data);
             //console.log(loadedTasks);
             
         } catch (err) {
             setError(err.message || 'Something went wrong!');
         }
         setIsLoading(false);
-    };
+        
+    },[]);
 
     return {
         isLoading,
